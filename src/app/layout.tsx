@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,10 +19,26 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
 });
 
+const title = "Soter — Discord moderation that watches so you don't have to";
+const description =
+  "Soter is an open-source Discord moderation bot that scans every message for hate speech and spam, and automatically times out repeat violators.";
+
+// og:image comes from app/opengraph-image.tsx
 export const metadata: Metadata = {
-  title: "Soter — Discord moderation that watches so you don't have to",
-  description:
-    "Soter automatically scans every message for hate speech and spam, and times out repeat violators — moderation that runs on its own.",
+  metadataBase: SITE_URL,
+  title,
+  description,
+  applicationName: "Soter",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "Soter",
+    locale: "en_US",
+    title,
+    description,
+  },
+  twitter: { card: "summary_large_image", title, description },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
