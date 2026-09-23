@@ -63,39 +63,15 @@ const features = [
   },
 ];
 
-const commands = [
-  { name: "/ping", description: "Check that Soter is online." },
-  { name: "/help", description: "Show a usage guide." },
-  {
-    name: "/settings exempt-add|remove|list",
-    description: "Manage channels exempt from moderation.",
-  },
-  {
-    name: "/settings hate-speech",
-    description: "Toggle the hate speech filter.",
-  },
-  {
-    name: "/settings mod-log-channel",
-    description: "Set where moderation actions get logged.",
-  },
-  {
-    name: "/settings timeout-config",
-    description: "Configure violation thresholds and timeout duration.",
-  },
-];
-
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col">
-      <header className="sticky top-0 z-10 border-b bg-background/80 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-4">
+      <header className="sticky top-0 z-10 bg-background/80 backdrop-blur">
+        <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-6">
           <span className="font-heading text-2xl">Soter</span>
           <nav className="hidden items-center gap-6 text-sm text-muted-foreground sm:flex">
             <a href="#features" className="hover:text-foreground">
               Features
-            </a>
-            <a href="#commands" className="hover:text-foreground">
-              Commands
             </a>
             <Link href={DISCORD_URL} className="hover:text-foreground">
               Community
@@ -111,7 +87,26 @@ export default function Home() {
       </header>
 
       <main className="flex-1">
-        <Reveal className="flex min-h-dvh items-center">
+        {/* -mt-16 pulls the hero under the h-16 sticky header so it centers in the viewport */}
+        <Reveal className="relative isolate -mt-16 flex min-h-dvh items-center overflow-hidden">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center [mask-image:radial-gradient(closest-side,black,transparent)]"
+          >
+            <div className="absolute size-96 rounded-full bg-foreground/5 blur-3xl" />
+            {[20, 32, 44, 56].map((size) => (
+              <div
+                key={size}
+                className="absolute rounded-full border border-foreground/10"
+                style={{ width: `${size}rem`, height: `${size}rem` }}
+              />
+            ))}
+            <div className="absolute size-[38rem] animate-[spin_90s_linear_infinite] rounded-full border border-dashed border-foreground/15 motion-reduce:animate-none" />
+            <ShieldCheck
+              strokeWidth={0.5}
+              className="size-80 text-foreground/10"
+            />
+          </div>
           <section className="mx-auto flex w-full max-w-5xl flex-col items-center px-6 py-24 text-center">
             <Badge variant="secondary">Early development — not yet 24/7</Badge>
             <h1 className="font-heading mt-6 max-w-3xl text-5xl leading-tight sm:text-6xl">
@@ -169,33 +164,6 @@ export default function Home() {
         <Separator className="mx-auto max-w-5xl" />
 
         <Reveal>
-          <section
-            id="commands"
-            className="mx-auto w-full max-w-5xl px-6 py-24"
-          >
-            <h2 className="font-heading text-3xl sm:text-4xl">Commands</h2>
-            <p className="mt-3 max-w-xl text-muted-foreground">
-              Everything is configured through slash commands.
-            </p>
-            <div className="mt-12 divide-y rounded-lg border">
-              {commands.map((command) => (
-                <div
-                  key={command.name}
-                  className="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
-                >
-                  <code className="font-mono text-sm">{command.name}</code>
-                  <span className="text-sm text-muted-foreground">
-                    {command.description}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </section>
-        </Reveal>
-
-        <Separator className="mx-auto max-w-5xl" />
-
-        <Reveal>
           <section className="mx-auto w-full max-w-5xl px-6 py-24 text-center">
             <h2 className="font-heading text-3xl sm:text-4xl">
               Built in the open
@@ -214,23 +182,47 @@ export default function Home() {
             </div>
           </section>
         </Reveal>
+
+        <Reveal>
+          <section className="mx-auto w-full max-w-5xl px-6 pb-24">
+            <div className="flex flex-col items-center rounded-2xl border bg-card px-6 py-16 text-center">
+              <ShieldCheck className="size-10 text-muted-foreground" />
+              <h2 className="font-heading mt-6 text-3xl sm:text-4xl">
+                Put Soter on watch
+              </h2>
+              <p className="mt-3 max-w-md text-muted-foreground">
+                Add the bot to your server in a couple of clicks and let it
+                handle the day-to-day moderation.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button asChild size="lg">
+                  <Link href={INVITE_URL}>
+                    <DiscordIcon />
+                    Add to Discord
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href={DISCORD_URL}>Join the community</Link>
+                </Button>
+              </div>
+            </div>
+          </section>
+        </Reveal>
       </main>
 
-      <Reveal>
-        <footer className="border-t">
-          <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-muted-foreground sm:flex-row">
-            <span className="font-heading text-lg text-foreground">Soter</span>
-            <div className="flex items-center gap-6">
-              <Link href={REPO_URL} className="hover:text-foreground">
-                GitHub
-              </Link>
-              <Link href={DISCORD_URL} className="hover:text-foreground">
-                Discord
-              </Link>
-            </div>
+      <footer className="border-t">
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-muted-foreground sm:flex-row">
+          <span className="font-heading text-lg text-foreground">Soter</span>
+          <div className="flex items-center gap-6">
+            <Link href={REPO_URL} className="hover:text-foreground">
+              GitHub
+            </Link>
+            <Link href={DISCORD_URL} className="hover:text-foreground">
+              Discord
+            </Link>
           </div>
-        </footer>
-      </Reveal>
+        </div>
+      </footer>
     </div>
   );
 }
