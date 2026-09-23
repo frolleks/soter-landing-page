@@ -22,7 +22,7 @@ import { DiscordIcon, GitHubIcon } from "@/components/icons";
 const REPO_URL = "https://github.com/frolleks/soter";
 const DISCORD_URL = "https://discord.gg/xURTvZUANp";
 const INVITE_URL =
-  "https://discord.com/oauth2/authorize?client_id=1551459097826693130&permissions=201403398&integration_type=0&scope=bot";
+  "https://discord.com/oauth2/authorize?client_id=1551459097826693130&permissions=1099713031190&integration_type=0&scope=bot";
 
 const features = [
   {
@@ -70,7 +70,10 @@ const commands = [
     name: "/settings exempt-add|remove|list",
     description: "Manage channels exempt from moderation.",
   },
-  { name: "/settings hate-speech", description: "Toggle the hate speech filter." },
+  {
+    name: "/settings hate-speech",
+    description: "Toggle the hate speech filter.",
+  },
   {
     name: "/settings mod-log-channel",
     description: "Set where moderation actions get logged.",
@@ -139,7 +142,10 @@ export default function Home() {
         <Separator className="mx-auto max-w-5xl" />
 
         <Reveal>
-          <section id="features" className="mx-auto w-full max-w-5xl px-6 py-24">
+          <section
+            id="features"
+            className="mx-auto w-full max-w-5xl px-6 py-24"
+          >
             <h2 className="font-heading text-3xl sm:text-4xl">
               Hands-off moderation
             </h2>
@@ -163,7 +169,10 @@ export default function Home() {
         <Separator className="mx-auto max-w-5xl" />
 
         <Reveal>
-          <section id="commands" className="mx-auto w-full max-w-5xl px-6 py-24">
+          <section
+            id="commands"
+            className="mx-auto w-full max-w-5xl px-6 py-24"
+          >
             <h2 className="font-heading text-3xl sm:text-4xl">Commands</h2>
             <p className="mt-3 max-w-xl text-muted-foreground">
               Everything is configured through slash commands.
@@ -192,8 +201,8 @@ export default function Home() {
               Built in the open
             </h2>
             <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-              Soter is open source, written in TypeScript on Bun, with Jev
-              (via OpenRouter) doing the message analysis. MIT licensed.
+              Soter is open source, written in TypeScript on Bun, with Jev (via
+              OpenRouter) doing the message analysis. MIT licensed.
             </p>
             <div className="mt-8 flex justify-center">
               <Button asChild size="lg">
