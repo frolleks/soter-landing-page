@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Hash, ShieldCheck, Trash2 } from "lucide-react";
+import { Hash, Trash2 } from "lucide-react";
 import { cn } from "cn";
+import { Logo } from "@/components/logo";
 
 // How long each frame stays up, in ms: empty, posted, flagged by Jev, deleted, DM sent.
 const FRAMES = [800, 1000, 1600, 1200, 4000];
@@ -84,7 +85,7 @@ export function ModerationDemo() {
           )}
         >
           <Message
-            avatar={<ShieldCheck className="size-4" />}
+            avatar={<Logo className="size-8" />}
             name="Soter"
             tag={
               <>
