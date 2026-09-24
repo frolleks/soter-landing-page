@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Reveal } from "@/components/reveal";
+import { ModerationDemo } from "@/components/moderation-demo";
 import { DiscordIcon, GitHubIcon } from "@/components/icons";
 
 const REPO_URL = "https://github.com/frolleks/soter";
@@ -92,9 +93,10 @@ export default function Home() {
       <main className="flex-1">
         {/* -mt-16 pulls the hero under the h-16 sticky header so it centers in the viewport */}
         <Reveal className="relative isolate -mt-16 flex min-h-dvh items-center overflow-hidden">
+          {/* lg:translate-x-64 centers the rings on the demo column: half a column plus half the gap = 256px */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center [mask-image:radial-gradient(closest-side,black,transparent)]"
+            className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center [mask-image:radial-gradient(closest-side,black,transparent)] lg:translate-x-64"
           >
             <div className="absolute size-96 rounded-full bg-foreground/5 blur-3xl" />
             {[20, 32, 44, 56].map((size) => (
@@ -107,33 +109,36 @@ export default function Home() {
             <div className="absolute size-[38rem] animate-[spin_90s_linear_infinite] rounded-full border border-dashed border-foreground/15 motion-reduce:animate-none" />
             <ShieldCheck
               strokeWidth={0.5}
-              className="size-80 text-foreground/10"
+              className="size-80 text-foreground/10 lg:hidden"
             />
           </div>
-          <section className="mx-auto flex w-full max-w-5xl flex-col items-center px-6 py-24 text-center">
-            <Badge variant="secondary">Early development — not yet 24/7</Badge>
-            <h1 className="font-heading mt-6 max-w-3xl text-5xl leading-tight sm:text-6xl">
-              Moderation that watches so you don&apos;t have to
-            </h1>
-            <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-              Soter moderates mostly on its own: every message is scanned for
-              hate speech and spam, and repeat violators are timed out
-              automatically.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg">
-                <Link href={INVITE_URL}>
-                  <DiscordIcon />
-                  Add to Discord
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href={REPO_URL}>
-                  <GitHubIcon />
-                  View on GitHub
-                </Link>
-              </Button>
+          <section className="mx-auto grid w-full max-w-5xl items-center gap-12 px-6 py-24 lg:grid-cols-2">
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+              <Badge variant="secondary">Early development — not yet 24/7</Badge>
+              <h1 className="font-heading mt-6 max-w-3xl text-5xl leading-tight sm:text-6xl">
+                Moderation that watches so you don&apos;t have to
+              </h1>
+              <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+                Soter moderates mostly on its own: every message is scanned for
+                hate speech and spam, and repeat violators are timed out
+                automatically.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button asChild size="lg">
+                  <Link href={INVITE_URL}>
+                    <DiscordIcon />
+                    Add to Discord
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href={REPO_URL}>
+                    <GitHubIcon />
+                    View on GitHub
+                  </Link>
+                </Button>
+              </div>
             </div>
+            <ModerationDemo />
           </section>
         </Reveal>
 
