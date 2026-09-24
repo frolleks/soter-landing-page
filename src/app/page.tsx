@@ -22,7 +22,7 @@ import { DiscordIcon, GitHubIcon } from "@/components/icons";
 const REPO_URL = "https://github.com/frolleks/soter";
 const DISCORD_URL = "https://discord.gg/xURTvZUANp";
 const INVITE_URL =
-  "https://discord.com/oauth2/authorize?client_id=1551459097826693130&permissions=1099713031190&integration_type=0&scope=bot";
+  "https://discord.com/oauth2/authorize?client_id=1551459097826693130&permissions=1099645938896&integration_type=0&scope=bot";
 
 const features = [
   {
