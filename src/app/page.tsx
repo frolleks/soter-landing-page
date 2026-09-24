@@ -6,6 +6,8 @@ import {
   SlidersHorizontal,
   ScrollText,
   BellOff,
+  Zap,
+  ArrowUpRight,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -21,6 +23,7 @@ import { DiscordIcon, GitHubIcon } from "@/components/icons";
 
 const REPO_URL = "https://github.com/frolleks/soter";
 const DISCORD_URL = "https://discord.gg/xURTvZUANp";
+const TYPESAFE_URL = "https://typesafe.ai";
 const INVITE_URL =
   "https://discord.com/oauth2/authorize?client_id=1551459097826693130&permissions=1099645938896&integration_type=0&scope=bot";
 
@@ -137,6 +140,84 @@ export default function Home() {
         <Separator className="mx-auto max-w-5xl" />
 
         <Reveal>
+          <section className="mx-auto grid w-full max-w-5xl items-center gap-12 px-6 py-24 md:grid-cols-2">
+            <div>
+              <Badge variant="secondary">
+                <Zap />
+                Powered by Jev
+              </Badge>
+              <h2 className="font-heading mt-4 text-3xl sm:text-4xl">
+                Built for decisions, not conversation
+              </h2>
+              <p className="mt-3 text-muted-foreground">
+                Jev is a model by TypeSafe AI made specifically for quick,
+                structured decisions. Instead of generating text, it returns
+                typed answers with probabilities.
+              </p>
+              <p className="mt-3 text-muted-foreground">
+                Soter asks it two things about every message — is it hate
+                speech, and does it look like spam — then acts on the answers:
+                clear cases are removed, borderline ones go to your mods.
+              </p>
+              <Link
+                href={TYPESAFE_URL}
+                className="mt-6 inline-flex items-center gap-1 text-sm hover:underline"
+              >
+                Learn more about Jev
+                <ArrowUpRight className="size-4" />
+              </Link>
+            </div>
+
+            <figure className="rounded-xl border bg-card text-sm">
+              <figcaption className="sr-only">
+                Example: Jev judges a spam message and Soter removes it.
+              </figcaption>
+              <div className="flex gap-3 p-5">
+                <div className="size-9 shrink-0 rounded-full bg-muted" />
+                <div>
+                  <div className="flex flex-wrap items-baseline gap-x-2">
+                    <span className="font-medium">new_user_4821</span>
+                    <span className="text-xs text-muted-foreground">
+                      joined 2 minutes ago
+                    </span>
+                  </div>
+                  <p className="mt-1 text-muted-foreground">
+                    <span className="rounded bg-foreground/10 px-1 text-foreground">
+                      @everyone
+                    </span>{" "}
+                    free nitro for the first 50 people, dm me to claim
+                  </p>
+                </div>
+              </div>
+              <div className="border-t px-5 py-4 font-mono text-xs">
+                <div className="flex items-center gap-1.5 text-muted-foreground">
+                  <Zap className="size-3.5" />
+                  Jev
+                </div>
+                <dl className="mt-3 space-y-2">
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-muted-foreground">is_hate_speech</dt>
+                    <dd>0.01</dd>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-muted-foreground">spam_level</dt>
+                    <dd>
+                      <span className="text-destructive">high_spam</span> · 0.96
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+              <div className="flex items-center gap-2 border-t px-5 py-4">
+                <ShieldCheck className="size-4 text-muted-foreground" />
+                Removed and logged to #mod-log
+              </div>
+            </figure>
+          </section>
+        </Reveal>
+
+        <Separator className="mx-auto max-w-5xl" />
+
+        <Reveal>
           <section
             id="features"
             className="mx-auto w-full max-w-5xl px-6 py-24"
@@ -183,8 +264,10 @@ export default function Home() {
           </section>
         </Reveal>
 
+        <Separator className="mx-auto max-w-5xl" />
+
         <Reveal>
-          <section className="mx-auto w-full max-w-5xl px-6 pb-24">
+          <section className="mx-auto w-full max-w-5xl px-6 py-24">
             <div className="flex flex-col items-center rounded-2xl border bg-card px-6 py-16 text-center">
               <ShieldCheck className="size-10 text-muted-foreground" />
               <h2 className="font-heading mt-6 text-3xl sm:text-4xl">
